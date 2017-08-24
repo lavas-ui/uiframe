@@ -6,7 +6,7 @@
 
 ``` bash
 # 安装依赖
-npm install
+npm install 或者解压node_modules.zip文件到当前目录免依赖安装
 
 # 更新
 npm update
