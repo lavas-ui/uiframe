@@ -2,31 +2,25 @@
     "applications":[
         {
             "name":"home",
-            "title":"主机安全",
+            "title":"主页",
             "home":"/home",
             "svg":"cup"
         },
         {
             "name":"person",
-            "title":"行为安全",
+            "title":"XXXX",
             "home":"/person",
             "svg":"pie"
         },
         {
             "name":"event",
-            "title":"安全事件",
+            "title":"XXXX",
             "home":"/event",
             "svg":"settings"
         },
         {
-            "name":"bpmn",
-            "title":"流程中心",
-            "home":"/bpmn",
-            "svg":"settings"
-        },
-        {
             "name":"system",
-            "title":"系统管理",
+            "title":"XXXX",
             "home":"/system",
             "svg":"chameleon"
         }
