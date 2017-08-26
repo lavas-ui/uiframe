@@ -7,12 +7,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import appShell from './modules/app-shell';
 import system from './modules/system';
+import sps from './modules/special';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
         appShell,
-        system
+        system,
+        sps
     }
 });

@@ -90,6 +90,19 @@ export function createRouter({routes = []}) {
                     router.app.$store.commit(`appShell/${types.SET_USER}`,{user:res.data.user});
                 }
                 if(res.data.authenticated){
+                    let apps = res.data.applications;
+                    let curAppName=localStorage.getItem('appName');
+                    let topApps=[];
+                    
+                    for(let i in apps){
+                        let {name,title,route,svg} = apps[i];
+                        console.log('---->',to.fullPath,name,route);
+                        if(to.fullPath.indexOf(name)>=0){
+                           console.log('---->--===',route); router.app.$store.commit(`appShell/${types.CHANGE_APP}`,{app:{name,title,route,svg}});
+                        }
+                        topApps.push({name,title,route,svg});
+                    }
+                    router.app.$store.commit(`appShell/${types.SET_APPLICATIONS}`,{apps:topApps});
                     next();
                 }
                 else{

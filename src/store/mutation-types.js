@@ -21,3 +21,7 @@ export const SET_BLOCKS ='SET_BLOCKS';
 export const SET_AUTHENTICATED ='SET_AUTHENTICATED';
 export const SET_APP_MENUS = 'SET_APP_MENUS';
 
+export const PUSH_APP_PATH = 'PUSH_APP_PATH';
+export const CLEAR_APP_PATH = 'CLEAR_APP_PATH';
+export const POP_APP_PATH = 'POP_APP_PATH';
+

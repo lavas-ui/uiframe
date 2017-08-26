@@ -4,13 +4,7 @@
 import * as sysTypes from '../system-mutation-types';
 import axios from 'axios';
 const state = {
-   applications:[
-     {
-       "code":"system",
-       "name":"系统管理",
-        "route":"/system"
-     }
-   ]
+
        
 };
 
@@ -32,7 +26,8 @@ export default {
             namespaced: true,
             state: {
                 types: [],
-                branch: {}
+                branch: {},
+                treeData:[]
             },
             actions: {
                 
@@ -59,6 +54,19 @@ export default {
                     if(res.status===200){
                         commit(sysTypes.GET_BRANCH_LIST,{branch:res.data});
                     }
+                },
+                
+                async getBranchTrees({commit}){
+                    let res = await axios({
+                        method:'post',
+                        url: '/special/queryCatTreeByCode.servicejson?code=matter',
+                        responseType: 'json'
+                    });
+                    if(res.status===200){
+                        commit(sysTypes.GET_BRANCH_TREES,{treeData:res.data});
+                        console.log(2);
+                        console.log(res.data);
+                    }
                 }
 
             },
@@ -69,6 +77,9 @@ export default {
                },  
                [sysTypes.GET_BRANCH_LIST](state,{branch}){
                    state.branch=branch;
+               },  
+               [sysTypes.GET_BRANCH_TREES](state,{treeData}){
+                   state.treeData=treeData;
                }
             }
         },

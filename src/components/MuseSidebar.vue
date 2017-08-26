@@ -75,7 +75,7 @@ export default {
             this.sidebarStatus = false;
         },
         closeAndGo(route) {
-            this.$router.push(route);
+            this.$router.push({path:route});
             this.close();
         },
         handleListChange (val) {

@@ -28,7 +28,7 @@
                 <slot name="applications">
                     <v-btn
                         v-for="app in applications"
-                        :key="app.home"
+                        :key="app.name"
                         :value="app.code"
                         :primary="currentApp.name==app.name"
                         @click.native="handleAppClick({app})"
@@ -79,12 +79,11 @@ export default {
         ])
     },
     mounted(){
-       this.getUserApplications({userId:'179005'});
+        
     },
     methods: {
         ...mapActions('appShell',[
-            'changeApp',
-            'getUserApplications'
+            'changeApp'
         ]),
         /**
          * 处理按钮点击事件
@@ -113,13 +112,15 @@ export default {
 
             // 如果传递了路由对象，进入路由
             if (route) {
-                this.$router.push(route);
+                this.$router.push({path:route});
             }
         },
         handleAppClick({app}={}){
             this.changeApp(app);
-            if(app && app.home){
-                this.$router.push(app.home);
+            console.log('go app -->',app);
+            if(app && app.route){
+                
+                this.$router.push({path:app.route});
             }
         }
     }

@@ -64,12 +64,10 @@ export default {
       }  
     },
     mounted(){
-       this.getUserApplications({userId:'179005'});
     },
     methods: {
         ...mapActions('appShell',[
-            'changeApp',
-            'getUserApplications'
+            'changeApp'
         ]),
         /**
          * 处理按钮点击事件
@@ -98,7 +96,7 @@ export default {
 
             // 如果传递了路由对象，进入路由
             if (route) {
-                this.$router.push(route);
+                this.$router.push({path:route});
             }
         },
         handleTabChange (val) {
@@ -108,8 +106,8 @@ export default {
               let app = this.applications[i];
               if(val === app.name){
                   this.changeApp(app);
-                  if(app.home){
-                      this.$router.push(app.home);      
+                  if(app.route){
+                      this.$router.push({path:app.route});      
                   }
                   break;
               }
@@ -117,8 +115,8 @@ export default {
         },
         handleAppClick({app}={}){
             this.changeApp(app);
-            if(app && app.home){
-                this.$router.push(app.home);
+            if(app && app.route){
+                this.$router.push({path:app.route});
             }
         }
     }

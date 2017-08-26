@@ -40,6 +40,7 @@ let state = {
     authenticated:true,
     token:"",
     user:false,
+    paths:[],
     currentApp:{name:"home"},
     applications:[]
 };
@@ -110,14 +111,9 @@ let actions = {
         }catch(e){}
     },
     changeApp({commit},app){
-        console.log('change app',app)
+        console.log('change app',app);
         commit(types.CHANGE_APP,{app});
-    },
-    async getUserApplications({commit},{userId}){
-        let res = await axios(`/api/applications.json?userId=${userId}`,{method:"get",responseType:"json"});
-        if(res.status===200){
-            commit(types.SET_APPLICATIONS,{apps:res.data.applications});
-        }
+        
     },
     async doAuthorized({commit},{userName='',appName='home'}){
         let res = await axios(`/api/user/authorized?userName=${userName}&appName=${appName}`,{method:"get",responseType:"json"});
@@ -152,6 +148,15 @@ let actions = {
                 }
             }
         }
+    },
+    pushPath({commit},{name,title,route}){
+        commit(types.PUSH_APP_PATH,{path:{name,title,route}});
+    },
+    clearPath({commit}){
+        commit(types.CLEAR_APP_PATH);
+    },
+    popPath({commit}){
+        commit(types.POP_APP_PATH);
     }
 
 };
@@ -178,19 +183,28 @@ let mutations = {
         state.token =token;
     },
     [types.CHANGE_APP](state,{app}){
-        console.log('change app',app);
         state.currentApp=app;
+        //state.paths=[app];
+    },
+    [types.PUSH_APP_PATH](state,{path}){
+        console.log('path--push->',path);
+        if(state.paths.length===0){
+            state.paths.push(state.currentApp);
+        }
+        
+        state.paths.push(path);
+    },
+    [types.CLEAR_APP_PATH](state){
+        
+       state.paths.clear();
+       state.paths.push(state.currentApp);       
+    },
+    [types.POP_APP_PATH](state){
+        
+        state.paths.pop();
     },
     [types.SET_APPLICATIONS](state,{apps}){
         state.applications=apps;
-        let appName = localStorage.getItem("appName");
-        console.log('appName',appName);
-        for(let app in apps){
-            if(apps[app].name==appName){
-                state.currentApp=apps[app];
-                break;
-            }
-        }
     }
 
 };

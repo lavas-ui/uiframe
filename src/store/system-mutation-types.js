@@ -4,3 +4,4 @@
 
 export const GET_BRANCH_TYPES = 'GET_BRANCH_TYPES';
 export const GET_BRANCH_LIST = 'GET_BRANCH_LIST';
+export const GET_BRANCH_TREES = 'GET_BRANCH_TREES';

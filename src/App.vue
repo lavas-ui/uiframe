@@ -15,14 +15,15 @@
             >
                 <template slot="logo"><span></span></template>
             </app-sidebar>
+            
             <div class="app-view-wrapper">
                 <v-breadcrumbs icons divider="forward">
-                    <v-breadcrumbs-item
-                        v-for="item in items" :key="item.text"
-                        :disabled="item.disabled"
-                    >
-                        {{ item.text }}
-                    </v-breadcrumbs-item>
+                  <v-breadcrumbs-item @click.stop="handleBreadGo(item.route)"
+                    v-for="item in paths" :key="item.name"
+                    :disabled="item.disabled"
+                  >
+                    {{ item.title }}
+                  </v-breadcrumbs-item>
                 </v-breadcrumbs>
                 <transition
                     :name="pageTransitionName"
@@ -101,6 +102,7 @@ export default {
             'appHeader',
             'appBottomNavigator',
             'authenticated',
+            'paths',
             'pageTransitionName'
         ])
     },
@@ -144,6 +146,11 @@ export default {
         },
         handleClickHeaderBack() {
             this.$router.go(-1);
+        },
+        handleBreadGo(route) {
+            console.log('bread go--route>',route);
+            if(!name) return false;
+            this.$router.push({path:route});
         },
         handleClickHeaderMenu() {
             this.showSidebar();
@@ -237,6 +244,7 @@ body
 
             &.app-view-with-header
                 top ($app-header-height * 2)
+                padding 10px
 
             &.app-view-with-footer
                 bottom $app-footer-height

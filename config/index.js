@@ -10,7 +10,22 @@ const path = require('path');
 const swPrecacheConfig = require('./sw-precache');
 const icon = require('./icon');
 const theme = require('./theme');
-
+const proxy = {
+      '/api-v1/*': {
+        target: 'http://192.168.2.212:8070',
+        secure: false,
+        filter:function (pathname,req) {
+          return pathname.match('^/api-v1');
+        }
+      },
+      '/api/v1/*': {
+        target: 'http://127.0.0.1:2618',
+        secure: false,
+        filter:function (pathname,req) {
+          return pathname.match('^/api/v1');
+        }
+      }
+};
 module.exports = {
     icon: icon,
     theme: theme,
@@ -42,7 +57,7 @@ module.exports = {
         autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        proxyTable: {},
+        proxyTable: proxy,
 
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
