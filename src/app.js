@@ -104,7 +104,7 @@ export function createApp(routerParams) {
     const app = new Vue({
         router,
         store,
-        ...App
+        ...Muse
     });
     
     return {app, router, store};
