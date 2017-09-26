@@ -33,14 +33,27 @@
 
             <!-- 导航列表分区块 -->
             <div v-if="blocks" class="app-sidebar-blocks">
-                <mu-list @change="handleListChange" :value="activeList">
-                  <mu-list-item v-for="(block, index) in blocks" :key="index" :title="block.sublistTitle" :value="index" toggleNested >
-                    <mu-icon slot="left" value="send" />
-                    <mu-list-item slot="nested" v-for="item in block.list" :key="item.text" @click.stop="closeAndGo(item.route)" :title="item.text" :value="item.route">
-                      <mu-icon slot="left" value="grade"/>
-                    </mu-list-item>  
-                  </mu-list-item>
-                </mu-list>
+                <v-list @change="handleListChange" :value="activeList">
+                  <v-list-group v-for="(block, index) in blocks" :key="index"  :value="block.active">
+                    <v-list-tile slot='item' @click=''>
+                      <v-list-tile-action>
+                         <icon v-if="block.svg" :name="block.svg" class="app-sidebar-icon"></icon>
+                         <v-icon v-else-if="block.icon" class="app-sidebar-icon">{{ block.icon }}</v-icon>
+                      </v-list-tile-action>
+                      <v-list-tile-content>{{block.title}}</v-list-tile-content>
+                      <v-list-tile-action>
+                        <v-icon>keyboard_arrow_down</v-icon>
+                      </v-list-tile-action>
+                    </v-list-tile>
+                    <v-list-tile v-for="item in block.list" :key="item.text" @click.stop="closeAndGo(item.route)">
+                      <v-list-tile-content>{{item.title}}</v-list-tile-content>    
+                      <v-list-tile-action>
+                         <icon v-if="item.svg" :name="item.svg" class="app-sidebar-icon"></icon>
+                         <v-icon v-else-if="item.icon" class="app-sidebar-icon">{{ item.icon }}</v-icon>
+                      </v-list-tile-action>
+                    </v-list-tile>   
+                  </v-list-group>
+                </v-list>
             </div>
         </div>
     </sidebar>
@@ -112,7 +125,7 @@ $swipe-width = 20px
 ul,li
     padding 0
     margin 0
-    color #fff
+    color #2b3438
     list-style none
 a
     text-decoration none
@@ -193,24 +206,11 @@ a
 
     .app-sidebar-blocks
         text-align left
-
-        .app-sidebar-block
-            padding 1px 0
-
-            .sub-list-title
-                height $app-sidebar-nav-height
-                line-height $app-sidebar-nav-height
-                text-indent ($app-sidebar-left-icon-size)px
-                background #4f7c8f
-
-            li
-                padding-left 35px
-                height $app-sidebar-nav-height
-                line-height $app-sidebar-nav-height
-                cursor: pointer;
-                &:last-child
-                    border none
-
-            &:last-child
-                border-bottom none
+        .app-sidebar-icon
+            width 20px
+            height 20px
+            
+  
+            
+           
 </style>

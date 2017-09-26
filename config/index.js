@@ -12,10 +12,10 @@ const icon = require('./icon');
 const theme = require('./theme');
 const proxy = {
       '/api-v1/*': {
-        target: 'http://192.168.2.212:8070',
+        target: 'http://localhost:8080',
         secure: false,
         filter:function (pathname,req) {
-          return pathname.match('^/api-v1');
+          return pathname.match('^/web/db');
         }
       },
       '/api/v1/*': {

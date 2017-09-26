@@ -129,13 +129,13 @@ let actions = {
                 if(app.modules) {
                     let blocks=[];
                     for(let m in app.modules) {
-                        let block={sublistTitle:app.modules[m].name,list:[],svg:'cup'};
+                        let block={title:app.modules[m].name,list:[],svg:'cup'};
 
                         let menus=app.modules[m].menus ||[];
-                        console.log(menus);
+                        
                         for(let n in menus) {
                             block.list.push({
-                                text: menus[n].name,
+                                title: menus[n].name,
                                 code: menus[n].code,
                                 svg: 'vrw',
                                 route: menus[n].route

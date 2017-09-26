@@ -7,17 +7,53 @@
      "email":"guest@seadun.com"
   },
   "applications":[
+	  	{
+           "name":"know",
+           "title":"应知应会",
+           "route":"/know",
+           "svg":"know"
+      	},
+	  	{
+           "name":"secretManage",
+           "title":"保密管理",
+           "route":"/secretManage",
+           "svg":"secretManage"
+      	},
+	  	{
+           "name":"infoCenter",
+           "title":"综合台账",
+           "route":"/infoCenter",
+           "svg":"infoCenter"
+      	},
+	  	{
+           "name":"statisticCenter",
+           "title":"综合分析",
+           "route":"/statisticCenter",
+           "svg":"statisticCenter"
+      	},
+	  	{
+           "name":"documentCenter",
+           "title":"工作档案",
+           "route":"/documentCenter",
+           "svg":"documentCenter"
+      	},
         {
-            "name":"home",
-            "title":"主页",
-            "route":"/home",
-            "svg":"cup"
+            "name":"special",
+            "title":"保密服务",
+            "route":"/special",
+            "svg":"special"
+        },
+        {
+            "name":"reportOutput",
+            "title":"评估报告",
+            "route":"/reportOutput",
+            "svg":"reportOutput"
         },
         {
             "name":"system",
             "title":"系统管理",
             "route":"/system",
-            "svg":"chameleon"
+            "svg":"systemManage"
         }
     ]
 }

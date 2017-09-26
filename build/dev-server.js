@@ -97,6 +97,7 @@ app.use(staticPath, express.static('./static'));
 // 测试数据映射
 app.use('/api', express.static('./mock/api'));
 
+
 let uri = 'http://localhost:' + port + '/home';
 
 let newResolve;

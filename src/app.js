@@ -5,9 +5,7 @@
 
 import Vue from 'vue';
 import Vuetify from 'vuetify';
-import MuseUI from 'muse-ui';
 import App from './App.vue';
-import Muse from './Muse.vue';
 
 import {createRouter} from './router.js';
 import store from './store';
@@ -16,8 +14,9 @@ import FastClick from 'fastclick';
 import Icon from 'vue-svg-icon/Icon.vue';
 
 import '@/assets/styles/global.styl';
-import 'muse-ui/dist/muse-ui.css';
-import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
+
+import axiosPlugin from '@/AxiosPlugin.js'
+Vue.use(axiosPlugin)
 
 // 全局的进度条，在组件中可通过 $loading 访问
 let loading = Vue.prototype.$loading = new Vue(ProgressBar).$mount();
@@ -26,7 +25,6 @@ document.body.appendChild(loading.$el);
 FastClick.attach(document.body);
 
 Vue.use(Vuetify);
-Vue.use(MuseUI);
 
 Vue.component('icon', Icon);
 
@@ -104,7 +102,7 @@ export function createApp(routerParams) {
     const app = new Vue({
         router,
         store,
-        ...Muse
+        ...App
     });
     
     return {app, router, store};

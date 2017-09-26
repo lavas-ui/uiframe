@@ -1,0 +1,40 @@
+{
+    "api": [
+        {
+          "url": "/bpmn/form/validate",
+          "desc": "人工核查",
+          "mock": true,
+          "res": {
+            "result": "@boolean()",
+            "msg": "校验成功."
+            
+          }
+        },
+        {
+          "url": "/bpmn/form/select",
+          "desc": "人工核查",
+          "mock": true,
+          "res": {
+            "code": 200,
+            "msg": "核查成功.",
+            "items|2":[{"id":"@string(4)","name":"@cword(2)"}]
+          }
+        },
+        {
+          "url": "/bpmn/form/switch",
+          "desc": "人工核查",
+          "mock": true,
+          "res": {
+            "code": 200,
+            "msg": "核查成功.",
+            "items":[{"id":"@string(4)","name":"@ctitle(4)"}]
+          }
+        }
+    ]
+}
+
+
+
+
+
+

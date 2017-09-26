@@ -6,7 +6,7 @@
 import System from '@/pages/system/System.vue';
 import BranchTypes from '@/pages/system/branch/types.vue';
 import BranchList from '@/pages/system/branch/list.vue';
-
+import CreateApp from '@/pages/system/application/CreateApp.vue'
 export default {
     routes: [
         {
@@ -23,6 +23,11 @@ export default {
             path: '/system/branch/list',
             name: 'branch-list',
             component: BranchList
+        },
+        {
+            path: '/system/application/create',
+            name: 'application-create',
+            component: CreateApp
         }
     ]
 };
